@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="stylesheets/styles.css">
+
+    <!-- google fonts -->
+    <link href="//fonts.googleapis.com/css2?family=Jost:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <!-- fontawesome v5 -->
+    <script src="https://kit.fontawesome.com/af562a2a63.js" crossorigin="anonymous"></script>
+
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+    <title>Cyber Applicaiton</title>
+</head>
+
+<body>
+    <div class="forms-grid">
+        <div class="register">
+            <span class="fas fa-user-circle"></span>
+            <strong>Create an account!</strong>
+            <form action="" method="post" class="register-form" id="registerForm">
+                <fieldset>
+                    <div class="form">
+                        <div class="form-row">
+                            <% if(error !==null) {%>
+                                        <span class="error"> <%= error%></span>
+                                <% } %>
+                            <% if(typeof alert !='undefined' ) { %>
+                                <% alert.forEach(function(error) { %>
+                                    <span class="error">
+                                        <%= error.msg %>
+                                    </span>
+                                    <% }) %>
+                                        <% } %>
+                        </div>
+                        <div class="form-row">
+                            <span class="fas fa-user"></span>
+                            <label class="form-label" for="input">Username</label>
+                            <input type="text" class="form-text" name="username" required>
+                        </div>
+                        <div class="form-row">
+                            <span class="fas fa-envelope"></span>
+                            <label class="form-label" for="input">E-mail</label>
+                            <input type="email" class="form-text" name="email" required>
+                        </div>
+                        <div class="form-row">
+                            <span class="fas fa-eye" id="see" onclick="see()"></span>
+                            <label class="form-label" for="input">Password</label>
+                            <input type="password" class="form-text" name="password" required id="password"
+                                onInput="check()">
+                        </div>
+                        <div class="form-row hide" id="pass-field">
+                            <div class="password-policy">
+                                <span id="check0"> <i class="far fa-check-circle"></i> 8 Characters</span>
+                                <span id="check1"> <i class="far fa-check-circle"></i> Uppercase</span>
+                                <span id="check2"> <i class="far fa-check-circle"></i> Lowercase</span>
+                                <span id="check3"> <i class="far fa-check-circle"></i> Special Character</span>
+                                <span id="check4"> <i class="far fa-check-circle"></i> Numeric Character</span>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <span class="fas fa-lock"></span>
+                            <label class="form-label" for="input">Confirm Password</label>
+                            <input type="password" class="form-text" name="confirmPass">
+                        </div>
+                        <div class="form-row">
+                            <div class="g-recaptcha" data-sitekey="6LffxSglAAAAALKKoRN5wFS_J-_-cde7ZlErOKCD"></div>
+                        </div>
+                        <div class="form-row button-login">
+                            <button type="submit" class="butn butn-login">Register <span
+                                    class="fas fa-arrow-right"></span></button>
+                        </div>
+                        <div class="form-row">
+
+                            <h3 class="register-navi">Already have an registered account?
+                                <a href="/">Login Here!</a>
+                            </h3>
+
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+
+</body>
+    <script src="scripts/script.js"></script>
+</html>

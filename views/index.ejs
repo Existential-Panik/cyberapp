@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+
+    <!-- google fonts -->
+    <link href="//fonts.googleapis.com/css2?family=Jost:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <!-- fontawesome v5 -->
+    <script src="https://kit.fontawesome.com/af562a2a63.js" crossorigin="anonymous"></script>
+    <title>Cyber Applicaiton</title>
+</head>
+
+<body>
+    <div class="forms-grid">
+        <div class="login">
+            <span class="fas fa-sign-in-alt"></span>
+            <strong>Welcome!</strong>
+            <span>Sign in to your account</span>
+
+            <form action="/" method="post" class="login-form">
+                <fieldset>
+                    <div class="form">
+                        <div class="form-row">
+                            <% if(error !== null) { %>
+                            <span class="error">
+                                    <%= error%>     
+                            </span>
+                            <% } %>
+                        </div>
+                        <div class="form-row">
+                            <span class="fas fa-user"></span>
+                            <label class="form-label" for="input">Username</label>
+                            <input type="text" class="form-text" name="username" required>
+
+                        </div>
+                        <div class="form-row">
+                            <span class="fas fa-eye" id="see" onclick="see()"></span>
+                            <label class="form-label" for="input">Password</label>
+                            <input type="password" class="form-text" name="password" id="password" required>
+                        </div>
+
+                        <div class="form-row button-login">
+                            <button type="submit" class="butn butn-login">Login <span
+                                    class="fas fa-arrow-right"></span></button>
+                        </div>
+                        <div class="form-row">
+
+                            <h3 class="register-navi">Don't have an account already?
+                                <a href="/register">Register Here!</a>
+                            </h3>
+
+                        </div>
+
+                    </div>
+        </div>
+        </fieldset>
+        </form>
+    </div>
+    </div>
+
+</body>
+<script>
+    var is_visible = false;
+
+    function see() {
+        var input = document.getElementById("password");
+        var see = document.getElementById("see");
+
+        if (is_visible) {
+            input.type = 'password';
+            is_visible = false;
+            see.style.color = 'gray';
+        }
+        else {
+            input.type = 'text';
+            is_visible = true;
+            see.style.color = '#262626';
+        }
+
+    }
+</script>
+
+</html>
