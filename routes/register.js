@@ -1,16 +1,9 @@
 const express = require('express');
 const router = express.Router();
 
-//for validation
 const { check, validationResult } = require('express-validator');
-
-//user model schema
 const User = require("../models/user");
-
-//for hashing password
 const bcrypt = require('bcryptjs');
-
-//for using advanced fetch with recaptcha
 const fetch = require('isomorphic-fetch');
 
 
