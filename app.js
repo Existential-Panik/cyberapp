@@ -32,7 +32,6 @@ app.use(
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-// Body Parser in JSON
 app.use(express.json({ limit: "5kb" }));
 app.use(express.urlencoded({ extended: false, limit: "5kb" }));
 
@@ -50,5 +49,5 @@ app.get('/home', function (req, res) {
 
 // Listening on PORT
 app.listen(port, () => {
-    console.log(`Listening on port ${port}.\nGoto the link:http://localhost:${port}`);
+    console.log(`Listening on port ${port}.\nRun the app on - http://localhost:${port}`);
 });

@@ -38,13 +38,13 @@ router.post('/', limiter, async function (req, res) {
     }
     // If the password doesn't match, throw an error.
     else {
-      const error = "The password is incorrect.";
+      const error = "User credentials Incorrect.";
       res.render('index', { error });
     }
   }
   // In case of an error, throw an error.
   catch (err) {
-    const error = "The user wasn't found.";
+    const error = "User credentials Incorrect.";
     res.render('index', { error });
   }
 

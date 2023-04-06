@@ -1,7 +1,5 @@
 let is_visible = false;
 
-
-
 document.getElementById("see").addEventListener("click", () => {
     let input = document.getElementById("password");
     let see = document.getElementById("see");

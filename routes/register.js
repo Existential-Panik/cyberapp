@@ -12,25 +12,25 @@ router.get('/', function (req, res, next) {
   res.render('register', { error: null });
 });
 
-// POST register page to get intut.
+// POST register page to get input.
 router.post('/', [
 
   //Input validation on the server-side
 
   check('username', 'Username is required.') // Username cannot be empty.
     .trim()
-    .notEmpty(),
+    .notEmpty()
+    .escape(),
 
-  check('email', 'Email criteria is not met.') //Email Has to be in well format.
+  check('email', 'Email criteria is not met.') //Email Has to be well formatted.
     .trim()
     .notEmpty()
     .isEmail()
     .normalizeEmail(),
-    
+
   check('password', 'Password criteria must be met.')// Checking list of secure criteria.
     .trim()
     .notEmpty()
-    //.notEmpty(),
     .custom((value, { req }) => /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[a-zA-Z\d@$.!%*#?&]/.test(value) && value.length >= 8),
 
   check('confirmPass', 'Passwords do not match.')// Checking password and confirm passwrod
@@ -40,23 +40,14 @@ router.post('/', [
 
 ], async (req, res) => {
 
-  //getting the user inputs from body
-  const { username, email, password } = req.body;
-
-  //defining the errors caugth from middleware
+  //defining the errors with caught validation middleware
   const errors = validationResult(req);
-
-  //hashing password
-  const hashedPass = await bcrypt.hash(password, 10);
 
   //Check if there are any errors
   if (!errors.isEmpty()) {
 
-    console.log(errors)
-    console.log(req.body)
     //Render the errors to the user.
     const alert = errors.array();
-    
     res.render('register', { alert, error: null });
   }
 
@@ -80,17 +71,25 @@ router.post('/', [
     })
       .then((response) => response.json())
       .then(async (google_response) => {
+
         // google_response is the object return by
         // google as a response
-
         if (google_response.success == true) {
-          //   if captcha is verified, create the users and save in database.
+
+          //getting the user inputs from request body
+          const { username, email, password } = req.body;
+
+          //hashing password
+          const hashedPass = await bcrypt.hash(password, 10);
+
+          //if captcha is verified, create the users and save in database.
           const newUser = await User.create({ username, email, password: hashedPass });
-          console.log('saved user ', newUser);
+
+          //Goto Login Route.
           res.redirect('/');
 
         } else {
-          // if captcha is not verified
+          // if captcha is not verified, throw an error
           const error = 'Captcha Verification failed.';
           res.render('register', { error });
         }
