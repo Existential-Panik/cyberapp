@@ -6,7 +6,7 @@ const port = 3000;
 const helmet = require("helmet");
 
 //importing the database connection
-require("./db/conn")
+require("./db/conn");
 
 //importing routes Routes
 const indexRouter = require('./routes/index');

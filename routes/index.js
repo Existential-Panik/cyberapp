@@ -13,7 +13,7 @@ const limiter = rateLimit({
 });
 
 // GET Login page. 
-router.get('/', function (req, res, next) {
+router.get('/', function (req, res) {
   res.render('index', { error: null });
 });
 
